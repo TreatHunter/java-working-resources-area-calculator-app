@@ -1,6 +1,5 @@
 package org.treathunter.gui;
 
-import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
