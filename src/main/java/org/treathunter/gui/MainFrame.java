@@ -8,7 +8,7 @@ public class MainFrame
 	
 	public MainFrame()
 	{
-		fr = new JFrame("made by TreatHunter");
+		fr = new JFrame("DS: Di Stone");
 		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fr.setResizable(false);
 		MainPanel pn = new MainPanel(fr);

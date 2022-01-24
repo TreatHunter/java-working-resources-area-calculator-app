@@ -19,32 +19,28 @@ public class ElementParametrsPanel extends JPanel
 	private JLabel lenghtLb;
 	private JTextField widthTF;
 	private JLabel widthLb;
-	private JTextField edgeLenghtTF;
+	private Integer[] edgeValues = {12,24,36,48,60,72,84,96,108,120,132,144,156,168,180}; //{"12","24","36","48","60","72","84","96","108","120","132","144","156","168","180"};
+	private JComboBox<Integer> edgeCmB;	
 	private JLabel edgeLenghtLb;
 	private JTextField hemLenghtTF;
 	private JLabel hemLenghtLb;
-	private JLabel hightLb;
-	private Integer[] hightValues = {12,24,36,48,60,72,84,96,108,120,132,144,156,168,180}; //{"12","24","36","48","60","72","84","96","108","120","132","144","156","168","180"};
-	private JComboBox<Integer> hightCmB;
+
 	public ElementParametrsPanel()
 	{
 		super();
 		this.setBorder(BorderFactory.createTitledBorder("параметры"));
 		GroupLayout layout = new GroupLayout(this);
-		lenghtLb = new JLabel("длинна: ");
+		lenghtLb = new JLabel("длинна мм: ");
 		lenghtTF = new JTextField();
 		lenghtTF.setMaximumSize(new Dimension(100,30));
-		widthLb = new JLabel("ширина: ");
+		widthLb = new JLabel("ширина мм: ");
 		widthTF = new JTextField();
 		widthTF.setMaximumSize(new Dimension(100,30));
-		hightLb = new JLabel("высота мм: ");
-		hightCmB = new JComboBox<Integer>(hightValues);
-		hightCmB.setMaximumSize(new Dimension(100,30));
-		hightCmB.setSelectedIndex(1);
-		edgeLenghtLb = new JLabel("длинна кромки: ");
-		edgeLenghtTF = new JTextField();
-		edgeLenghtTF.setMaximumSize(new Dimension(100,30));
-		hemLenghtLb = new JLabel("длинна подгибки: ");
+		edgeLenghtLb = new JLabel("кромка мм: ");
+		edgeCmB = new JComboBox<Integer>(edgeValues);
+		edgeCmB.setMaximumSize(new Dimension(100,30));
+		edgeCmB.setSelectedIndex(1);
+		hemLenghtLb = new JLabel("подгибка мм: ");
 		hemLenghtTF = new JTextField();
 		hemLenghtTF.setMaximumSize(new Dimension(100,30));
 
@@ -62,12 +58,8 @@ public class ElementParametrsPanel extends JPanel
 							.addComponent(widthTF)
 					)
 					.addGroup(layout.createSequentialGroup()
-							.addComponent(hightLb)
-							.addComponent(hightCmB)
-					)
-					.addGroup(layout.createSequentialGroup()
 							.addComponent(edgeLenghtLb)
-							.addComponent(edgeLenghtTF)
+							.addComponent(edgeCmB)
 					)
 					.addGroup(layout.createSequentialGroup()
 							.addComponent(hemLenghtLb)
@@ -86,12 +78,8 @@ public class ElementParametrsPanel extends JPanel
 							.addComponent(widthTF)
 					)			
 					.addGroup(layout.createParallelGroup()
-							.addComponent(hightLb)
-							.addComponent(hightCmB)
-					)	
-					.addGroup(layout.createParallelGroup()
 							.addComponent(edgeLenghtLb)
-							.addComponent(edgeLenghtTF)
+							.addComponent(edgeCmB)
 					)	
 					.addGroup(layout.createParallelGroup()
 							.addComponent(hemLenghtLb)
@@ -112,16 +100,13 @@ public class ElementParametrsPanel extends JPanel
 		return lenghtTF.getText();
 	}
 	
-	public String getEdgeLenghtValue()
+	public int getEdgeLenghtValue()
 	{
-		return edgeLenghtTF.getText();
+		return edgeValues[edgeCmB.getSelectedIndex()];
 	}
 	public String getHemLenghtValue()
 	{
 		return hemLenghtTF.getText();
 	}
-	public int getHeightValue()
-	{
-		return hightValues[hightCmB.getSelectedIndex()];
-	}
+
 }

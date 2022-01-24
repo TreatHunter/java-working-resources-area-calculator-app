@@ -60,7 +60,7 @@ public class CutoutPanel extends JPanel{
 				
 			}
 		});
-		lenghtLb = new JLabel("длинна: ");
+		lenghtLb = new JLabel("длинна мм: ");
 		
 		widthTF = new JTextField();
 		widthTF.setMaximumSize(new Dimension(100,30));
@@ -93,7 +93,7 @@ public class CutoutPanel extends JPanel{
 						
 					}
 		});
-		widthLb = new JLabel("ширина: ");
+		widthLb = new JLabel("ширина мм: ");
 		
 		orLb = new JLabel("или");		
 		
@@ -130,7 +130,7 @@ public class CutoutPanel extends JPanel{
 				
 			}
 		});
-		areaLb = new JLabel("площадь: ");		
+		areaLb = new JLabel("площадь м^2: ");		
 		
 		this.setLayout(layout);
 		layout.setAutoCreateGaps(true);
