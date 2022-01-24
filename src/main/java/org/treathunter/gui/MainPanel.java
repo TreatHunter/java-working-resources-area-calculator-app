@@ -89,8 +89,9 @@ public class MainPanel extends JPanel{
 		calculateBtn.addActionListener(
 				event -> {
 					Calculator calc = new Calculator();
+					ObjectsConverter conv= new ObjectsConverter();
 					try {
-					//	calc.calculate(elementsListPnl.elementsList, plateCostTF.getText(), plateLenghtTF.getText(), plateWidthTF.getText());
+					calc.calculate(conv.convertElements(elementsListPnl.elementsList),conv.convertSheetCost(plateCostTF.getText()),conv.convertSheetLength(plateLenghtTF.getText()),conv.convertSheetWidth(plateWidthTF.getText()));
 					} catch (Exception ex) 
 					{
 	            		JOptionPane.showMessageDialog(frame,
@@ -98,9 +99,9 @@ public class MainPanel extends JPanel{
 	                            "Ошибка",
 	                            JOptionPane.ERROR_MESSAGE);
 					}
-					plateAmountTF.setText(calc.getPlatesAmount().toString());
-					CostTF.setText(calc.getTotalCost().toString());
-					areaTF.setText(calc.getAreaWithoutHeight().toString());
+					plateAmountTF.setText(Double.toString(calc.getSheetsAmount()));
+					CostTF.setText(Double.toString(calc.getTotalCost()));
+					areaTF.setText(Double.toString(calc.getTotalArea()));
 				}
 		);
 
