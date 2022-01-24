@@ -105,7 +105,7 @@ public class MainPanel extends JPanel{
 				}
 		);
 
-		plateAmountLb = new JLabel("количество пластин:");
+		plateAmountLb = new JLabel("количество листов:");
 		plateAmountTF = new JTextField();
 		plateAmountTF.setMaximumSize(new Dimension(150,10));
 		CostLb = new JLabel("общая стоимость тсч р:");
