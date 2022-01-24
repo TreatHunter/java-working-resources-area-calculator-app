@@ -75,14 +75,14 @@ public class MainPanel extends JPanel{
 		deleteElementBtn.addActionListener(
 				event -> elementsListPnl.deleteElement()
 		);
-		plateFormat = new JLabel("формат листа:");
+		plateFormat = new JLabel("формат листа");
 		plateLenghtLb = new JLabel("длинна мм:");
 		plateLenghtTF = new JTextField();
 		plateLenghtTF.setMaximumSize(new Dimension(150,10));
 		plateWidthLb = new JLabel("ширина мм:");
 		plateWidthTF = new JTextField();
 		plateWidthTF.setMaximumSize(new Dimension(150,10));
-		plateCostLb = new JLabel("цена листа стч р / м^2");
+		plateCostLb = new JLabel("цена листа стч р / м^2:");
 		plateCostTF = new JTextField();
 		plateCostTF.setMaximumSize(new Dimension(150,10));
 		
@@ -108,10 +108,10 @@ public class MainPanel extends JPanel{
 		plateAmountLb = new JLabel("количество пластин:");
 		plateAmountTF = new JTextField();
 		plateAmountTF.setMaximumSize(new Dimension(150,10));
-		CostLb = new JLabel("общая стоимость тсч.р:");
+		CostLb = new JLabel("общая стоимость тсч р:");
 		CostTF = new JTextField();
 		CostTF.setMaximumSize(new Dimension(150,10));
-		areaLb = new JLabel("общая площадь мм:2:");
+		areaLb = new JLabel("общая площадь м^2:");
 		areaTF = new JTextField();
 		areaTF.setMaximumSize(new Dimension(150,10));
 		
