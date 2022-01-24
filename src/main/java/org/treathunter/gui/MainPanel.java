@@ -1,8 +1,6 @@
 package org.treathunter.gui;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -28,11 +26,20 @@ public class MainPanel extends JPanel{
 	JButton addElementBtn;
 	JButton deleteElementBtn;
 	
+	JLabel plateFormat;
+	JLabel plateLenghtLb;
+	JTextField plateLenghtTF;
+	JLabel plateWidthLb;
+	JTextField plateWidthTF;
+	JLabel plateCostLb;
+	JTextField plateCostTF;
+	
+/*	
 	JLabel plateAreaLb;
 	JTextField plateAreaTF;
 	JLabel plateCostLb;
 	JTextField plateCostTF;
-	
+*/
 	JButton calculateBtn;
 	JLabel plateAmountLb;
 	JTextField plateAmountTF;
@@ -59,45 +66,32 @@ public class MainPanel extends JPanel{
 		ControlsPanel = new JPanel();
 		ControlsPanel.setBorder(BorderFactory.createTitledBorder("Управление"));
 		addElementBtn = new JButton("добавить элемент");
-		addElementBtn.addActionListener(new ActionListener()
-				{
+		addElementBtn.addActionListener( 
+				event -> elementsListPnl.addElement()
+		);
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						elementsListPnl.addElement();
-						
-					}
-			
-				});
 		deleteElementBtn = new JButton("удалить элемент");
-		deleteElementBtn.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				elementsListPnl.deleteElement();
-				
-			}
-	
-		});
-		
-		plateAreaLb = new JLabel("площадь одной пластины мм^2:");
-		plateAreaTF = new JTextField();
-		plateAreaTF.setMaximumSize(new Dimension(150,10));
-		plateCostLb = new JLabel("стоимость однго м^2 пластин стч. р");
+		deleteElementBtn.addActionListener(
+				event -> elementsListPnl.deleteElement()
+		);
+		plateFormat = new JLabel("формат листа");
+		plateLenghtLb = new JLabel("длинна мм:");
+		plateLenghtTF = new JTextField();
+		plateLenghtTF.setMaximumSize(new Dimension(150,10));
+		plateWidthLb = new JLabel("ширина мм:");
+		plateWidthTF = new JTextField();
+		plateWidthTF.setMaximumSize(new Dimension(150,10));
+		plateCostLb = new JLabel("цена листа стч р / м^2:");
 		plateCostTF = new JTextField();
 		plateCostTF.setMaximumSize(new Dimension(150,10));
 		
 		calculateBtn = new JButton("рассчитать");
-		calculateBtn.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				Calculator calc = new Calculator();
+		calculateBtn.addActionListener(
+				event -> {
+					Calculator calc = new Calculator();
+					ObjectsConverter conv= new ObjectsConverter();
 					try {
-						calc.calculate(elementsListPnl.elementsList, plateCostTF.getText(), plateAreaTF.getText());
+					calc.calculate(conv.convertElements(elementsListPnl.elementsList),conv.convertSheetCost(plateCostTF.getText()),conv.convertSheetLength(plateLenghtTF.getText()),conv.convertSheetWidth(plateWidthTF.getText()));
 					} catch (Exception ex) 
 					{
 	            		JOptionPane.showMessageDialog(frame,
@@ -105,20 +99,19 @@ public class MainPanel extends JPanel{
 	                            "Ошибка",
 	                            JOptionPane.ERROR_MESSAGE);
 					}
-					plateAmountTF.setText(calc.getPlatesAmount().toString());
-					CostTF.setText(calc.getTotalCost().toString());
-					areaTF.setText(calc.getAreaWithoutHeight().toString());
-				
-			}
-	
-		});
-		plateAmountLb = new JLabel("количество пластин:");
+					plateAmountTF.setText(Double.toString(calc.getSheetsAmount()));
+					CostTF.setText(Double.toString(calc.getTotalCost()));
+					areaTF.setText(Double.toString(calc.getTotalArea()));
+				}
+		);
+
+		plateAmountLb = new JLabel("количество листов:");
 		plateAmountTF = new JTextField();
 		plateAmountTF.setMaximumSize(new Dimension(150,10));
-		CostLb = new JLabel("общая стоимость тсч.р:");
+		CostLb = new JLabel("общая стоимость тсч р:");
 		CostTF = new JTextField();
 		CostTF.setMaximumSize(new Dimension(150,10));
-		areaLb = new JLabel("общая площадь мм:2:");
+		areaLb = new JLabel("общая площадь м^2:");
 		areaTF = new JTextField();
 		areaTF.setMaximumSize(new Dimension(150,10));
 		
@@ -133,14 +126,19 @@ public class MainPanel extends JPanel{
 							.addComponent(deleteElementBtn)
 					)		
 					.addGroup(layout.createParallelGroup()
-							.addComponent(plateAreaLb)
+							.addComponent(plateFormat)
+							.addComponent(plateLenghtLb)
+							.addComponent(plateWidthLb)
 							.addComponent(plateCostLb)
 					)		
 					.addGroup(layout.createParallelGroup()
-							.addComponent(plateAreaTF)
+							.addGap(17,17,17)
+							.addComponent(plateLenghtTF)
+							.addComponent(plateWidthTF)
 							.addComponent(plateCostTF)
 					)		
 					.addGroup(layout.createParallelGroup()
+							.addGap(30, 30, 30)
 							.addComponent(calculateBtn)
 					)	
 					.addGroup(layout.createParallelGroup()
@@ -163,14 +161,19 @@ public class MainPanel extends JPanel{
 							.addComponent(deleteElementBtn)
 					)
 					.addGroup(layout.createSequentialGroup()
-							.addComponent(plateAreaLb)
+							.addComponent(plateFormat)
+							.addComponent(plateLenghtLb)
+							.addComponent(plateWidthLb)
 							.addComponent(plateCostLb)
 					)
 					.addGroup(layout.createSequentialGroup()
-							.addComponent(plateAreaTF)
+							.addGap(17, 17, 17)
+							.addComponent(plateLenghtTF)
+							.addComponent(plateWidthTF)
 							.addComponent(plateCostTF)
 					)		
 					.addGroup(layout.createSequentialGroup()
+							.addGap(30, 30, 30)
 							.addComponent(calculateBtn)
 					)					
 					.addGroup(layout.createSequentialGroup()
@@ -184,7 +187,6 @@ public class MainPanel extends JPanel{
 							.addComponent(areaTF)
 					)	
 		);
-		//this.setMinimumSize(new Dimension(640,0));
 		this.validate();
 	}
 }
