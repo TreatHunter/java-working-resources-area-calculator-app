@@ -1,8 +1,6 @@
 package org.treathunter.gui;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -59,28 +57,15 @@ public class MainPanel extends JPanel{
 		ControlsPanel = new JPanel();
 		ControlsPanel.setBorder(BorderFactory.createTitledBorder("Управление"));
 		addElementBtn = new JButton("добавить элемент");
-		addElementBtn.addActionListener(new ActionListener()
-				{
+		addElementBtn.addActionListener( 
+				event -> elementsListPnl.addElement()
+		);
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						elementsListPnl.addElement();
-						
-					}
-			
-				});
 		deleteElementBtn = new JButton("удалить элемент");
-		deleteElementBtn.addActionListener(new ActionListener()
-		{
+		deleteElementBtn.addActionListener(
+				event -> elementsListPnl.deleteElement()
+		);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				elementsListPnl.deleteElement();
-				
-			}
-	
-		});
-		
 		plateAreaLb = new JLabel("площадь одной пластины мм^2:");
 		plateAreaTF = new JTextField();
 		plateAreaTF.setMaximumSize(new Dimension(150,10));
@@ -89,13 +74,9 @@ public class MainPanel extends JPanel{
 		plateCostTF.setMaximumSize(new Dimension(150,10));
 		
 		calculateBtn = new JButton("рассчитать");
-		calculateBtn.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				Calculator calc = new Calculator();
+		calculateBtn.addActionListener(
+				event -> {
+					Calculator calc = new Calculator();
 					try {
 						calc.calculate(elementsListPnl.elementsList, plateCostTF.getText(), plateAreaTF.getText());
 					} catch (Exception ex) 
@@ -108,10 +89,9 @@ public class MainPanel extends JPanel{
 					plateAmountTF.setText(calc.getPlatesAmount().toString());
 					CostTF.setText(calc.getTotalCost().toString());
 					areaTF.setText(calc.getAreaWithoutHeight().toString());
-				
-			}
-	
-		});
+				}
+		);
+
 		plateAmountLb = new JLabel("количество пластин:");
 		plateAmountTF = new JTextField();
 		plateAmountTF.setMaximumSize(new Dimension(150,10));
@@ -184,7 +164,6 @@ public class MainPanel extends JPanel{
 							.addComponent(areaTF)
 					)	
 		);
-		//this.setMinimumSize(new Dimension(640,0));
 		this.validate();
 	}
 }

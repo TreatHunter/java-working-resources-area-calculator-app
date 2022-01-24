@@ -34,14 +34,12 @@ public class CutoutPanel extends JPanel{
 		lenghtTF.getDocument().addDocumentListener(new DocumentListener() 
 		{
             private void changeAreaText() {
-                Runnable doChange = new Runnable() {
-                    @Override
-                    public void run() {
-                    	areaTF.setText("");
-                    	areaTF.update(areaTF.getGraphics());
-                    }
-                };
-                SwingUtilities.invokeLater(doChange);
+            	SwingUtilities.invokeLater(
+            			() -> {
+                        	areaTF.setText("");
+                        	areaTF.update(areaTF.getGraphics());
+            			}
+            	);
             }
 
 			@Override
@@ -69,14 +67,12 @@ public class CutoutPanel extends JPanel{
 		widthTF.getDocument().addDocumentListener(new DocumentListener() 
 		{
 	                private void changeAreaText() {
-	                    Runnable doChange = new Runnable() {
-	                        @Override
-	                        public void run() {
-	                        	areaTF.setText("");
-	                        	areaTF.update(areaTF.getGraphics());
-	                        }
-	                    };
-	                    SwingUtilities.invokeLater(doChange);
+	                	SwingUtilities.invokeLater(
+	                			() -> {
+		                        	areaTF.setText("");
+		                        	areaTF.update(areaTF.getGraphics());
+	                			}
+	                	);
 	                }
 
 					@Override
@@ -106,16 +102,14 @@ public class CutoutPanel extends JPanel{
 		areaTF.getDocument().addDocumentListener(new DocumentListener() 
 		{
             private void changeLenghtWidthText() {
-                Runnable doChange = new Runnable() {
-                    @Override
-                    public void run() {
-                    	widthTF.setText("");
-                    	lenghtTF.setText("");
-                    	widthTF.update(widthTF.getGraphics());
-                    	lenghtTF.update(lenghtTF.getGraphics());
-                    }
-                };
-                SwingUtilities.invokeLater(doChange);
+            	SwingUtilities.invokeLater(
+            			() -> {
+                        	widthTF.setText("");
+                        	lenghtTF.setText("");
+                        	widthTF.update(widthTF.getGraphics());
+                        	lenghtTF.update(lenghtTF.getGraphics());
+            			}
+            	);
             }
 
 			@Override
