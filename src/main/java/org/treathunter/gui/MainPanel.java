@@ -1,5 +1,6 @@
 package org.treathunter.gui;
 
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -26,11 +27,20 @@ public class MainPanel extends JPanel{
 	JButton addElementBtn;
 	JButton deleteElementBtn;
 	
+	JLabel plateFormat;
+	JLabel plateLenghtLb;
+	JTextField plateLenghtTF;
+	JLabel plateWidthLb;
+	JTextField plateWidthTF;
+	JLabel plateCostLb;
+	JTextField plateCostTF;
+	
+/*	
 	JLabel plateAreaLb;
 	JTextField plateAreaTF;
 	JLabel plateCostLb;
 	JTextField plateCostTF;
-	
+*/
 	JButton calculateBtn;
 	JLabel plateAmountLb;
 	JTextField plateAmountTF;
@@ -65,11 +75,14 @@ public class MainPanel extends JPanel{
 		deleteElementBtn.addActionListener(
 				event -> elementsListPnl.deleteElement()
 		);
-
-		plateAreaLb = new JLabel("площадь одной пластины мм^2:");
-		plateAreaTF = new JTextField();
-		plateAreaTF.setMaximumSize(new Dimension(150,10));
-		plateCostLb = new JLabel("стоимость однго м^2 пластин стч. р");
+		plateFormat = new JLabel("формат листа:");
+		plateLenghtLb = new JLabel("длинна мм:");
+		plateLenghtTF = new JTextField();
+		plateLenghtTF.setMaximumSize(new Dimension(150,10));
+		plateWidthLb = new JLabel("ширина мм:");
+		plateWidthTF = new JTextField();
+		plateWidthTF.setMaximumSize(new Dimension(150,10));
+		plateCostLb = new JLabel("цена листа стч р / м^2");
 		plateCostTF = new JTextField();
 		plateCostTF.setMaximumSize(new Dimension(150,10));
 		
@@ -78,7 +91,7 @@ public class MainPanel extends JPanel{
 				event -> {
 					Calculator calc = new Calculator();
 					try {
-						calc.calculate(elementsListPnl.elementsList, plateCostTF.getText(), plateAreaTF.getText());
+					//	calc.calculate(elementsListPnl.elementsList, plateCostTF.getText(), plateLenghtTF.getText(), plateWidthTF.getText());
 					} catch (Exception ex) 
 					{
 	            		JOptionPane.showMessageDialog(frame,
@@ -113,14 +126,19 @@ public class MainPanel extends JPanel{
 							.addComponent(deleteElementBtn)
 					)		
 					.addGroup(layout.createParallelGroup()
-							.addComponent(plateAreaLb)
+							.addComponent(plateFormat)
+							.addComponent(plateLenghtLb)
+							.addComponent(plateWidthLb)
 							.addComponent(plateCostLb)
 					)		
 					.addGroup(layout.createParallelGroup()
-							.addComponent(plateAreaTF)
+							.addGap(17,17,17)
+							.addComponent(plateLenghtTF)
+							.addComponent(plateWidthTF)
 							.addComponent(plateCostTF)
 					)		
 					.addGroup(layout.createParallelGroup()
+							.addGap(30, 30, 30)
 							.addComponent(calculateBtn)
 					)	
 					.addGroup(layout.createParallelGroup()
@@ -143,14 +161,19 @@ public class MainPanel extends JPanel{
 							.addComponent(deleteElementBtn)
 					)
 					.addGroup(layout.createSequentialGroup()
-							.addComponent(plateAreaLb)
+							.addComponent(plateFormat)
+							.addComponent(plateLenghtLb)
+							.addComponent(plateWidthLb)
 							.addComponent(plateCostLb)
 					)
 					.addGroup(layout.createSequentialGroup()
-							.addComponent(plateAreaTF)
+							.addGap(17, 17, 17)
+							.addComponent(plateLenghtTF)
+							.addComponent(plateWidthTF)
 							.addComponent(plateCostTF)
 					)		
 					.addGroup(layout.createSequentialGroup()
+							.addGap(30, 30, 30)
 							.addComponent(calculateBtn)
 					)					
 					.addGroup(layout.createSequentialGroup()
