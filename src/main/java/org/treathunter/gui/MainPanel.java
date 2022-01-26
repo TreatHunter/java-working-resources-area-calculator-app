@@ -31,8 +31,8 @@ public class MainPanel extends JPanel{
 	JTextField plateLenghtTF;
 	JLabel plateWidthLb;
 	JTextField plateWidthTF;
-	JLabel plateCostLb;
-	JTextField plateCostTF;
+	JLabel squareMeterCostLb;
+	JTextField squareMeterCostTF;
 	
 /*	
 	JLabel plateAreaLb;
@@ -81,9 +81,9 @@ public class MainPanel extends JPanel{
 		plateWidthLb = new JLabel("ширина мм:");
 		plateWidthTF = new JTextField();
 		plateWidthTF.setMaximumSize(new Dimension(150,10));
-		plateCostLb = new JLabel("цена листа стч р / м^2:");
-		plateCostTF = new JTextField();
-		plateCostTF.setMaximumSize(new Dimension(150,10));
+		squareMeterCostLb = new JLabel("цена листа стч р / м^2:");
+		squareMeterCostTF = new JTextField();
+		squareMeterCostTF.setMaximumSize(new Dimension(150,10));
 		
 		calculateBtn = new JButton("рассчитать");
 		calculateBtn.addActionListener(
@@ -91,7 +91,7 @@ public class MainPanel extends JPanel{
 					Calculator calc = new Calculator();
 					ObjectsConverter conv= new ObjectsConverter();
 					try {
-					calc.calculate(conv.convertElements(elementsListPnl.elementsList),conv.convertSheetCost(plateCostTF.getText()),conv.convertSheetLength(plateLenghtTF.getText()),conv.convertSheetWidth(plateWidthTF.getText()));
+					calc.calculate(conv.convertElements(elementsListPnl.elementsList),conv.convertSheetCost(squareMeterCostTF.getText()),conv.convertSheetLength(plateLenghtTF.getText()),conv.convertSheetWidth(plateWidthTF.getText()));
 					} catch (Exception ex) 
 					{
 	            		JOptionPane.showMessageDialog(frame,
@@ -129,13 +129,13 @@ public class MainPanel extends JPanel{
 							.addComponent(plateFormat)
 							.addComponent(plateLenghtLb)
 							.addComponent(plateWidthLb)
-							.addComponent(plateCostLb)
+							.addComponent(squareMeterCostLb)
 					)		
 					.addGroup(layout.createParallelGroup()
 							.addGap(17,17,17)
 							.addComponent(plateLenghtTF)
 							.addComponent(plateWidthTF)
-							.addComponent(plateCostTF)
+							.addComponent(squareMeterCostTF)
 					)		
 					.addGroup(layout.createParallelGroup()
 							.addGap(30, 30, 30)
@@ -164,13 +164,13 @@ public class MainPanel extends JPanel{
 							.addComponent(plateFormat)
 							.addComponent(plateLenghtLb)
 							.addComponent(plateWidthLb)
-							.addComponent(plateCostLb)
+							.addComponent(squareMeterCostLb)
 					)
 					.addGroup(layout.createSequentialGroup()
 							.addGap(17, 17, 17)
 							.addComponent(plateLenghtTF)
 							.addComponent(plateWidthTF)
-							.addComponent(plateCostTF)
+							.addComponent(squareMeterCostTF)
 					)		
 					.addGroup(layout.createSequentialGroup()
 							.addGap(30, 30, 30)

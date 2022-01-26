@@ -9,7 +9,7 @@ public class Calculator {
 	private double totalCost;
 	private double totalArea;
 	
-	public void calculate(ArrayList<CalculatorElement> elList, double sheetCost, double sheetLength, double sheetWidth) {
+	public void calculate(ArrayList<CalculatorElement> elList, double squareMeterCost, double sheetLength, double sheetWidth) {
 		totalAreaWithoutCutouts = elList
 				.parallelStream()
 				.mapToDouble(el -> el.areaWithoutCutouts)
@@ -20,7 +20,7 @@ public class Calculator {
 				.sum();
 		double sheetArea = sheetLength * sheetWidth / 1_000_000; //m^2
 		sheetsAmount = totalAreaWithCutouts / sheetArea;
-		totalCost = totalAreaWithoutCutouts /sheetArea * sheetCost;
+		totalCost = totalAreaWithoutCutouts * squareMeterCost;
 		totalArea = totalAreaWithCutouts;
 	}
 	
