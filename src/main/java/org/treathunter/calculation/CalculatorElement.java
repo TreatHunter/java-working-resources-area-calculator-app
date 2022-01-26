@@ -8,7 +8,7 @@ public class CalculatorElement {
 	public double areaWithCutouts;
 	
 	public CalculatorElement (int lenght, int width, int edge, int hem, ArrayList<CalculatorCutoutElement> cutOutsList) {
-		areaWithoutCutouts = (lenght * width + lenght * edge + lenght * hem) / 1_000_000; //m^2
+		areaWithoutCutouts =(double) (lenght * width + lenght * edge + lenght * hem) / 1_000_000; //m^2
 		areaWithCutouts = areaWithoutCutouts - cutOutsList
 				.parallelStream()
 				.mapToDouble(c -> c.area)
